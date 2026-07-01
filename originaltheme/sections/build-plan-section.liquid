@@ -1,0 +1,53 @@
+<div class="starter-section hidden">
+  <h2>Starter Plan</h2>
+  <p>Choose 20 meals below</p>
+  <!-- Insert your meal builder or product list -->
+</div>
+
+<div class="pro-section hidden">
+  <h2>Pro Plan</h2>
+  <p>Choose 30 meals below</p>
+  <!-- Insert your meal builder or product list -->
+</div>
+
+<div class="no-plan-section hidden">
+  <h2>Order Without a Plan</h2>
+  <p>Browse à la carte meals below</p>
+  <!-- Insert your menu layout -->
+</div>
+
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const plan = params.get("plan");
+
+  if (plan) {
+    localStorage.setItem("selectedPlan", plan);
+    document.body.setAttribute("data-plan", plan);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const starterSection = document.querySelector('.starter-section');
+    const proSection = document.querySelector('.pro-section');
+    const noPlanSection = document.querySelector('.no-plan-section');
+
+    if (plan === 'starter') {
+      starterSection?.classList.remove('hidden');
+      proSection?.classList.add('hidden');
+      noPlanSection?.classList.add('hidden');
+    } else if (plan === 'pro') {
+      proSection?.classList.remove('hidden');
+      starterSection?.classList.add('hidden');
+      noPlanSection?.classList.add('hidden');
+    } else {
+      noPlanSection?.classList.remove('hidden');
+      starterSection?.classList.add('hidden');
+      proSection?.classList.add('hidden');
+    }
+  });
+</script>

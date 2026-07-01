@@ -1,0 +1,16 @@
+<!-- Delivery Checker Section -->
+<section class="delivery-checker">
+  <div class="container">
+    <h2 class="delivery-checker__title">
+      {{ section.settings.heading | default: 'Check if we deliver to your postcode' }}
+    </h2>
+
+    <!-- 👇 Pickeasy gets moved into here -->
+    <div id="picky-mount" class="picky-mount"></div>
+  </div>
+  <style>
+    .picky-mount { max-width: 720px; margin: 16px auto 0; }
+    .delivery-checker__title { text-align:center; margin-bottom: 8px; }
+  </style>
+</section>
+

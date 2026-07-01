@@ -1,0 +1,76 @@
+{% comment %}
+  Custom Announcement Bar with Infinite Scroll
+{% endcomment %}
+
+<section class="announcement-bar-section">
+  <div class="custom-ticker-wrapper">
+    <div class="custom-ticker-track">
+      {% for block in section.blocks %}
+        <span class="custom-ticker-message">{{ block.settings.text }}</span>
+      {% endfor %}
+      {% for block in section.blocks %}
+        <span class="custom-ticker-message">{{ block.settings.text }}</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "This is a custom announcement!"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Custom Announcement Bar",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+.custom-ticker-wrapper {
+  overflow: hidden;
+  width: 100%;
+  background-color: #121212; /* change if needed */
+  color: #fff;
+  white-space: nowrap;
+  padding: 0.5rem 0;
+}
+
+.custom-ticker-track {
+  display: inline-block;
+  animation: scroll-right 20s linear infinite;
+}
+
+.custom-ticker-message {
+  display: inline-block;
+  margin-right: 3rem;
+  font-size: 0.8rem;
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+{% endstyle %}
